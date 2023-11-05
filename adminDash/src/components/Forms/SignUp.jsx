@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "../../App.css";
+import axios from "axios";
 import SignUpGoogle from "../SocialMediaSignUps/SignUpGoogle";
 import SignUpGitHub from "../SocialMediaSignUps/SignUpGitHub";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,8 +13,20 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [retypedPassword, setRetypedPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const result = await axios.post("/api/v1/sign-up", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
   };
 
   return (

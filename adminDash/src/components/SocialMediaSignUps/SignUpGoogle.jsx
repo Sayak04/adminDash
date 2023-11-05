@@ -16,7 +16,3 @@ const SignUpGoogle = () => {
 };
 
 export default SignUpGoogle;
-
-// client id:- 871593214754-t16ufniunk8elh2uk1fq1149bcvejgvo.apps.googleusercontent.com
-
-// client secret:- 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
