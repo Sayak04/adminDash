@@ -9,39 +9,6 @@ body,
   font-size: 18px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  height: 33rem;
-  width: 50rem;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-.hello-container {
-  font-family: Nunito Sans;
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 1.1px;
-  text-align: center;
-}
-
-.create-account-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.input-container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
 
 input {
   padding: 0.5rem 1rem !important;
@@ -62,13 +29,6 @@ input {
   background-color: #769cf4;
 }
 
-.img-container {
-  width: 25rem;
-}
-
-.blank-container {
-  height: 10.1rem;
-}
 
 
 

@@ -16,13 +16,30 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post("/api/v1/sign-up", {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
-      console.log(result);
+      // check if the password and the retyped password match
+      if (password !== retypedPassword) {
+        toast.error("Passwords do not match");
+        return;
+      }
+
+      // check the strength of the password
+      
+      
+      const result = await axios
+        .post("/api/v1/sign-up", {
+          firstName,
+          lastName,
+          email,
+          password,
+        })
+        .then((response) => {
+          console.log(response);
+          toast.success(`Welcome ${firstName} ${lastName}`);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Axios Error: " + error.message);
+        });
     } catch (err) {
       console.log(err);
       toast.error("Something went wrong");

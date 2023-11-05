@@ -1,4 +1,5 @@
 import userModel from "../models/userModel.js";
+import { hashPassword } from "../utils/hash.js";
 
 export const signUpController = async (req, res) => {
   try {
@@ -38,11 +39,13 @@ export const signUpController = async (req, res) => {
       });
     }
 
+    const hashedPassword = await hashPassword(password);
+
     const newUser = new userModel({
       firstName,
       lastName,
       email,
-      password,
+      password: hashedPassword,
     }).save();
     if (!newUser) {
       res.status(500).send({
