@@ -13,6 +13,37 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [retypedPassword, setRetypedPassword] = useState("");
 
+  const findStrengthOfPassword = (password) => {
+    if (password.lenth < 8) return 0;
+    let strength = 0;
+    let lowerCase = 0,
+      upperCase = 0,
+      number = 0,
+      special = 0;
+
+    for (const c of password) {
+      if (c >= "a" && c <= "z") {
+        lowerCase++;
+      } else if (c >= "A" && c <= "Z") {
+        upperCase++;
+      } else if (!isNaN(c) && c !== " ") {
+        number++;
+      } else {
+        special++;
+      }
+    }
+
+    if (lowerCase > 0) strength += 20;
+    if (upperCase > 0) strength += 20;
+    if (number > 0) strength += 30;
+    if (special > 0) strength += 30;
+
+    if (password.includes(firstName)) strength -= 10;
+    if (password.includes(lastName)) strength -= 10;
+
+    return strength;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -22,9 +53,14 @@ const SignUp = () => {
         return;
       }
 
-      // check the strength of the password
-      
-      
+      let strength = findStrengthOfPassword(password);
+
+      if (strength <= 50) {
+        toast.error("Password not strong enough!");
+        toast.error("Please add atleast 1 number and 1 special character");
+        return;
+      }
+
       const result = await axios
         .post("/api/v1/sign-up", {
           firstName,
