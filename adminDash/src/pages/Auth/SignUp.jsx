@@ -29,7 +29,7 @@ const SignUp = () => {
                 </div>
                 <div className="mt-4">
                   <span>Already Have an Account ? </span>
-                  <a href="/" style={{ color: "#1F64FF" }}>
+                  <a href="/login" style={{ color: "#1F64FF" }}>
                     LOGIN
                   </a>
                 </div>
